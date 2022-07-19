@@ -1,0 +1,20 @@
+.films {
+    position: relative;
+}
+
+.films__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px 16px;
+    padding: 60px 0;
+    justify-content: center;
+
+    @media screen and (max-width: 1024px) {
+        gap: 32px;
+    }
+
+    @media screen and (max-width: 767px) {
+        gap: 20px 0;
+        padding: 62px 20px;
+    }
+}
