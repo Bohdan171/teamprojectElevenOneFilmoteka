@@ -3,18 +3,18 @@
       <div class="container">
         <div class="header-section-lib">
           <nav class="navigation">
-            <a href="/src/index-lib.html" class="navigation__logo logo"
-              ><svg class="logo__icon" width="24" height="24">
+            <a href="/src/index.html" class="navigation__logo logo"
+          ><svg class="logo__icon" width="24" height="24">
                 <use href="/src/images/sprite.svg#logo"></use>
               </svg>
               <span class="logo__name">Filmoteka</span>
             </a>
           <ul class="side-nav side-nav--lib">
             <li class="side-nav__item">
-              <a href="/src/partials/header.html" class="side-nav__link">Home</a>
+              <a href="/src/index.html" class="side-nav__link">Home</a>
             </li>
             <li class="side-nav__item">
-              <a href="" class="side-nav__link side-nav__link--current-page"
+              <a href="#" class="side-nav__link side-nav__link--current-page"
                 >My library</a
               >
             </li>
@@ -23,7 +23,7 @@
   
          <form>
           <div role="group">
-            <ul class="storage js-choice-storage">
+            <ul class="storage">
               <li class="storage__item">
                 <label class="storage__label">
                   <input
@@ -33,7 +33,7 @@
                     class="storage__input visuallyhidden"
                     checked
                   />
-                  <span class="storage__btn" id="js-WatchedButton">Watched</span>
+                  <span class="storage__btn" id="">Watched</span>
                 </label>
               </li>
               <li class="storage__item">
@@ -44,14 +44,12 @@
                     value="Queue"
                     class="storage__input visuallyhidden"
                   />
-                  <span class="storage__btn" id="js-QueueButton">Queue</span>
+                  <span class="storage__btn" id="">Queue</span>
                 </label>
               </li>
             </ul>
           </form>
         </div>
-        <div class="js-warning header-warning"></div>
-        <div class="js-search-results header-warning"></div>
       </div>
     </header>
   </div>
