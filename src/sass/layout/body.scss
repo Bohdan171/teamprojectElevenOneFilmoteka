@@ -1,20 +1,56 @@
 .films {
     position: relative;
 }
-
 .films__container {
+    padding: 20px;
+
+    @media screen and (min-width: 480px) {
+        padding: 20px;
+    }
+
+    @media screen and (min-width: 768px) {
+        padding: 59px 32px;
+    }
+    
+    @media screen and (min-width: 1200px) {
+        padding: 60px 32px;
+    }
+}
+.gallary {
     display: flex;
     flex-wrap: wrap;
-    gap: 32px 16px;
-    padding: 60px 0;
+    gap: 20px 0;
     justify-content: center;
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (min-width: 480px) {
+        gap: 20px 0;
+    }
+    
+    @media screen and (min-width: 768px) {
         gap: 32px;
     }
+    
+    @media screen and (min-width: 1200px) {
+        gap: 32px 16px;
+        justify-content: flex-start;
+    }   
+}
 
-    @media screen and (max-width: 767px) {
-        gap: 20px 0;
-        padding: 62px 20px;
+.film-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media screen and (min-width: 480px) {
+        width: 480px;
     }
+
+    @media screen and (min-width: 768px) {
+        width: calc((100% - 32px) / 2);
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: calc((100% - 2 * 16px) / 3);
+    }
+
 }
