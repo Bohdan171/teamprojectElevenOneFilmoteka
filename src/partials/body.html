@@ -2,4 +2,25 @@
   <div class="container films__container">
     <ul class="gallary"></ul>
   </div>
+  <!-- Пагинация -->
+  <div class="pagination-nav">
+    <button type="button" class="pagination-nav_btn "data-action="left-btn">
+      <svg class="icon" width="16" height="16">
+        <use href="./images/sprite.svg#icon-arrow-left"></use>
+      </svg>
+    </button>
+    <ul class="pagination-list" data-action ="pagin-list">
+      <li class="pagination-list_item pagination-list_item--selected" data-action="btn-page">1</li>
+      <li class="pagination-list_item" data-action="btn-page">2</li>
+      <li class="pagination-list_item" data-action="btn-page">3</li>
+      <li class="pagination-list_item" data-action="btn-page">4</li>
+      <li class="pagination-list_item five" data-action="btn-page">5</li>
+    </ul>
+    <button type="button" class="pagination-nav_btn" data-action ="right-btn">
+      <svg class="icon" width="16" height="16">
+        <use href="./images/sprite.svg#icon-arrow-right"></use>
+      </svg>
+    </button>
+  </div>
+  <!-- Пагинация -->
 </section>
