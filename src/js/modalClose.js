@@ -1,5 +1,17 @@
 import { refs } from './refs.js';
+import aboutMovieTemplates from '../tmp/modalAboutFilm.hbs';
 
+
+function modalAppearanceToggle() {
+  refs.modalBackdrop.classList.toggle('is-hidden');
+  document.body.classList.toggle('modal-open');
+}
+
+async function renderMovieList(key, page) {
+  if (page === 1) {
+    refs.galleryList.innerHTML = '';
+  }
+}
 export function closeOnClick(e) {
   if (e.target.closest('.js-close-btn') || e.target === refs.modalBackdrop) {
     refs.cardContainer.innerHTML = '';
