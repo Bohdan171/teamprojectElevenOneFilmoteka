@@ -1,6 +1,9 @@
 import axios from "axios";
 import { ref } from "./ref-pagin";
 import { madeMarkupMorePages, madeMarkupLastPages, madeMarkupFirstPages } from "./markup-pages";
+import { NewFilms } from "./fetchFilm/fetch.js";
+import { PopulаrFilms } from "./popular/fetchPopular";
+import {createMarkup} from 
 
 const API_KEY = "63c49d80fa037ae8f982024576ca5e08";
 
