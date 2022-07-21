@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ref } from "./ref-pagin";
 import { madeMarkupMorePages, madeMarkupLastPages, madeMarkupFirstPages } from "./markup-pages";
-import { NewFilms } from "./fetchFilm/fetch.js";
+import { NewFilms } from "./fetchfilm/fetch.js";
 import { PopulаrFilms } from "./popular/fetchPopular";
 import { createMarkup } from "./index.js";
 
