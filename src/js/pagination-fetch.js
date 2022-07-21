@@ -3,7 +3,7 @@ import { ref } from "./ref-pagin";
 import { madeMarkupMorePages, madeMarkupLastPages, madeMarkupFirstPages } from "./markup-pages";
 import { NewFilms } from "./fetchfilm/fetch.js";
 import { PopulаrFilms } from "./popular/fetchPopular";
-import { createMarkup } from "./index.js";
+import { createMarkup } from "../index.js";
 
 // const API_KEY = "63c49d80fa037ae8f982024576ca5e08";
 

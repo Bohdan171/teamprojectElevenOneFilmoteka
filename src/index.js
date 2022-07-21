@@ -9,5 +9,4 @@ import './js/spinner';
 import './js/modalClose';
 import './js/modalTrailer';
 
-import './js/loader';
 
