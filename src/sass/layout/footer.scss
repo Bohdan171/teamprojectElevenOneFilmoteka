@@ -1,0 +1,215 @@
+// utils-----------------------------------
+body {
+    font-family: 'Rubik';
+    margin: 0;
+    background: #F6F9FC;
+    
+}
+
+img,
+picture {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    cursor: pointer;
+    padding: 0;
+    border: none;
+
+}
+
+
+ul,
+ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+// utils-----------------------------------
+footer {
+    width: 100%;
+    height: 100px;
+    background: #F7F7F7;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #545454;
+    text-align: center;
+
+    @media screen and (min-width: 768px) {
+        height: 79px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    @media screen and (min-width: 1280px) {
+        height: 77px;
+    }
+}
+
+.all_rights {
+    margin-bottom: 10px;
+    padding-top: 28px;
+
+    @media screen and (min-width: 768px) {
+        padding: 0;
+        margin: 0;
+        margin-right: 5px;
+    }
+
+}
+
+.footer_link {
+    color: inherit;
+    display: inline-block;
+}
+
+.dev {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.by {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.svg_img {
+    margin-right: 10px;
+}
+// --------------------------------------------MODAL
+
+
+
+.footer_backdrop {
+position: fixed;
+top: 0px;
+left: 0px;
+width: 100%;
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: rgba(0, 0, 0, 0.2);
+opacity: 1;
+transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+z-index: 3;
+
+}
+
+.is-hidden {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.footer_modal {
+    position: relative;
+    width: 900px;
+    height: 450px;
+    box-shadow: 0 10px 5px #0000001f, 0 10px 10px #00000024, 0 20px 50px #0003;
+    border-radius: 4px;
+    padding: 40px;
+    background:
+            repeating-linear-gradient(190deg, rgba(255, 0, 0, 0.5) 40px,
+                rgba(255, 153, 0, 0.5) 80px, rgba(255, 255, 0, 0.5) 120px,
+                rgba(0, 255, 0, 0.5) 160px, rgba(0, 0, 255, 0.5) 200px,
+                rgba(75, 0, 130, 0.5) 240px, rgba(238, 130, 238, 0.5) 280px,
+                rgba(255, 0, 0, 0.5) 300px),
+            repeating-linear-gradient(-190deg, rgba(255, 0, 0, 0.5) 30px,
+                rgba(255, 153, 0, 0.5) 60px, rgba(255, 255, 0, 0.5) 90px,
+                rgba(0, 255, 0, 0.5) 120px, rgba(0, 0, 255, 0.5) 150px,
+                rgba(75, 0, 130, 0.5) 180px, rgba(238, 130, 238, 0.5) 210px,
+                rgba(255, 0, 0, 0.5) 230px),
+            repeating-linear-gradient(23deg, red 50px, orange 100px,
+                yellow 150px, green 200px, blue 250px,
+                indigo 300px, violet 350px, red 370px);
+}
+
+.footer_modal_close_btn {
+    position: absolute;
+    font-size: 30px;
+    top: 0;
+    right: 0;
+}
+
+.team_name {
+    color: #000;
+}
+
+.footer_modal_close_btn {
+    background: transparent;
+    padding: 5px 5px;
+}
+
+.team_cards {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px 65px;
+    
+}
+
+.team_card {
+   margin-right: 30px;
+   margin-bottom: 10px;
+   &:nth-child(4) {
+    margin-right: 0;
+   }
+   &:nth-child(5) {
+       margin-left: 90px;
+   }
+   &:nth-last-child(-n+3) {
+margin-bottom: 0;
+   }
+
+}
+.team_card_wrap {
+    overflow: hidden;
+    position: relative;
+    border-radius: 50%;
+    transition: transform 0.5s ease-out;
+
+    &:hover {
+        transform: scale(1.3);
+        box-shadow: 0px 1px 1px rgb(0 0 0 / 12%), 0px 4px 4px rgb(0 0 0 / 6%), 1px 4px 6px rgb(0 0 0 / 16%);
+        .team_card_info {
+            transform: translateX(101%); 
+        }
+    }
+        
+}
+
+.team_card_info {
+    width: 150px;
+        top: 0px;
+        position: absolute;
+        transform: translateX(0);
+        height: 100%;
+        font-size: 18px;
+        line-height: 1.56;
+        letter-spacing: 0.03em;
+        color: #f77e02;
+        background-color: #00000094;
+        transition-duration: 250ms;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-property: transform;
+        padding: 63px 24px;
+}
