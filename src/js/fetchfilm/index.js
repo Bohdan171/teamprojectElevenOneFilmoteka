@@ -51,11 +51,13 @@ function createMarkup(results){
          <h2 class="title">
             ${title}
          </h2>
-         <p class="genre">
-           ${genre_ids}
-         </p>
-         <p class="yers">
+         <p class="info-description">
+         <b class="genre"> ${genre_ids} </b>
+
+         <b> | </b>
+         <b class="yers">
            ${date}
+         </b>
          </p>
          
        </div>
