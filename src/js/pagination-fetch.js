@@ -3,17 +3,17 @@ import { ref } from "./ref-pagin";
 import { madeMarkupMorePages, madeMarkupLastPages, madeMarkupFirstPages } from "./markup-pages";
 import { NewFilms } from "./fetchFilm/fetch.js";
 import { PopulаrFilms } from "./popular/fetchPopular";
-import {createMarkup} from 
+import { createMarkup } from "./index.js";
 
-const API_KEY = "63c49d80fa037ae8f982024576ca5e08";
+// const API_KEY = "63c49d80fa037ae8f982024576ca5e08";
 
-axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
+// axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
 let page = 1;
 let pagesArray;
 let totalPages;
 
-madeMarkupPopular()
+madeMarkupPopular();
 ref.pagBox.addEventListener("click", onClick);
 
 async function onClick(e) {
@@ -60,36 +60,36 @@ async function onClick(e) {
 
 
 
-function madeMarkup(data) { 
+// function madeMarkup(data) { 
  
-         const markup = data.map(({ poster_path }) => {
-            return `<li><img class = "gallery_img" src=https://image.tmdb.org/t/p/w154${poster_path} alt="" loading="lazy" /></li>`
-         }).join("");
+//          const markup = data.map(({ poster_path }) => {
+//             return `<li><img class = "gallery_img" src=https://image.tmdb.org/t/p/w154${poster_path} alt="" loading="lazy" /></li>`
+//          }).join("");
         
-    return  ref.gallary.insertAdjacentHTML("beforeend", markup);
-};
+//     return  ref.gallary.insertAdjacentHTML("beforeend", markup);
+// };
 
- async function getFilms(page) {
-    try {
+//  async function getFilms(page) {
+//     try {
       
-      const response = await axios.get(`trending/all/day?api_key=${API_KEY}&language=en-US&page=${page}`);
-      console.log(response);
-       totalPages = response.data.total_pages;
-      // console.log(totalPages);
-       const data = response.data.results;
+//       const response = await axios.get(`trending/all/day?api_key=${API_KEY}&language=en-US&page=${page}`);
+//       console.log(response);
+//        totalPages = response.data.total_pages;
+//       // console.log(totalPages);
+//        const data = response.data.results;
       
-        return data;
+//         return data;
         
-  } catch (error) {
-    console.error(error);
-  }
-}
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
 
 
 async function madeMarkupPopular() {
-    const popular = await getFilms(page);
-  madeMarkup(popular);
+    const popular = await PopulаrFilms(page);
+  createMarkup(popular);
 };
 
 
