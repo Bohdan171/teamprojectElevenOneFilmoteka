@@ -13,10 +13,12 @@ export default class NewFilms{
         this.name = newQuary
       }
     
+
     async  fetch(page) {
       try {
         const keyapi = '4bceebe1d1f9bc99c966449bdeaecb86';
         const requestparams = `?api_key=${keyapi}&language=en-US&page=${page}&include_adult=false&query=${this.name}`
+
         const url = BASE_URL + requestparams;
         
         return await axios.get(`${url}`).then(response => response.data);}
