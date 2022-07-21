@@ -134,3 +134,7 @@
         line-height: 1.2;
     }
 }
+
+body.modal-open {
+    overflow: hidden;
+}

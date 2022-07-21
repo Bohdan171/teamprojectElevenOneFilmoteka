@@ -15,12 +15,25 @@
     <!-- ❗️❗️❗️ Add partials like so for every page -->
     <include src="./partials/loader.html"></include>
     <include src="./partials/header.html"></include>
+
+    <main>
+      <section class="movie-gallery movie-gallery-js" data-page="trending">
+        <div class="container">
+          <ul class="gallery-list list js-gallery-list"></ul>
+        </div>
+        <div class="anchor"></div>
+      </section>
+    </main> 
     <include src="./partials/body.html"></include>
     <include src="./partials/footer.html"></include>
     <include src="./partials/modal.html"></include>
+
+    
   </body>
   <script type="module" src="./index.js"></script>
   <script type="module" src="./js/fetchfilm/index.js"></script>
   <script type="module" src="./js/popular/popular.js"></script>
   <script type="module" src="./js/modal-close.js"></script>
+  
+  
 </html>
