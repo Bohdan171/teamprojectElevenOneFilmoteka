@@ -1,5 +1,7 @@
 import { refs } from './refs.js';
+
 //import aboutMovieTemplates from '../tmp/modalAboutFilm.hbs';
+
 
 
 function modalAppearanceToggle() {
@@ -18,7 +20,10 @@ export function closeOnClick(e) {
     e.stopPropagation();
     modalAppearanceToggle();
     refs.modalBackdrop.removeEventListener('click', closeOnClick);
-    if (refs.films.dataset.page === 'queue' || refs.films.dataset.page === 'watched') {
+    if (
+      refs.films.dataset.page === 'queue' ||
+      refs.films.dataset.page === 'watched'
+    ) {
       renderMovieList(refs.films.dataset.page, 1);
     }
   }
@@ -29,7 +34,10 @@ export function modalKeypressEsc(e) {
     refs.cardContainer.innerHTML = '';
     modalAppearanceToggle();
     document.removeEventListener('keydown', modalKeypressEsc);
-    if (refs.films.dataset.page === 'queue' || refs.films.dataset.page === 'watched') {
+    if (
+      refs.films.dataset.page === 'queue' ||
+      refs.films.dataset.page === 'watched'
+    ) {
       renderMovieList(refs.films.dataset.page, 1);
     }
   }
