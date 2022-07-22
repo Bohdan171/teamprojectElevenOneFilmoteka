@@ -1,5 +1,9 @@
 import { refs } from './refs.js';
 
+//import aboutMovieTemplates from '../tmp/modalAboutFilm.hbs';
+
+
+
 function modalAppearanceToggle() {
   refs.modalBackdrop.classList.toggle('is-hidden');
   document.body.classList.toggle('modal-open');
