@@ -1,6 +1,7 @@
 .films {
     position: relative;
 }
+
 .films__container {
     padding: 20px;
 
@@ -11,11 +12,12 @@
     @media screen and (min-width: 768px) {
         padding: 59px 32px;
     }
-    
+
     @media screen and (min-width: 1200px) {
         padding: 60px 32px;
     }
 }
+
 .gallary {
     display: flex;
     flex-wrap: wrap;
@@ -25,15 +27,15 @@
     @media screen and (min-width: 480px) {
         gap: 20px 0;
     }
-    
+
     @media screen and (min-width: 768px) {
         gap: 32px;
     }
-    
+
     @media screen and (min-width: 1200px) {
         gap: 32px 16px;
         justify-content: flex-start;
-    }   
+    }
 }
 
 .film-card {
@@ -42,7 +44,7 @@
     justify-content: space-between;
     border-radius: 5px;
     transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover,
     &:focus {
@@ -60,103 +62,27 @@
         width: calc((100% - 32px) / 2);
     }
 
-}
-
-//////// Стили пагинации//////
-.pagination-nav{
-    display: flex;
-   
-    margin-left: auto;
-    margin-right: auto;
-}
-.pagination-nav_btn{
- width: 40px;
- height: 40px;
-
- background-color: #F7F7F7;
- border-radius: 5px;
- border: solid #F7F7F7; 
-
-&:not(:last-child){
-    margin-right: 20px;
-}
-}
-
-.pagination-list{
-    display: flex;
-    align-items: center;
-    align-items: center;
-    justify-content: center;
-}
-.pagination-list_item{
-        padding-right: 8px;
-        padding-left: 8px;
-        padding-top: 13px;
-        padding-bottom: 13px;
-        border: 0;
-        background-color: transparent;
-
-            
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 16px;
-        vertical-align: middle;
-        text-align: center;
-        cursor: pointer;  
-        
-        color: #000000;
-  
-}
-
-.pagination-list_item--selected{
-   
-        width: 40px;
-        height: 40px;
-        margin-right: 8px;
-        margin-left: 8px;
-        
-        background-color: #FF6B08;
-        color: white;
-        border-radius: 5px;
-        text-align: center;
-        padding: 13px;
-        &:first-child {
-            margin-left: 0px;
-        }
-        &:last-child {
-            margin-right: 0px;
-        }
-}
-button[data-action="right-btn"]{
-    margin-left: 20px;
-}
-
-/// 
-
-
     @media screen and (min-width: 1200px) {
-        width: calc((100% - 2 * 16px) / 3);
+    width: calc((100% - 2 * 16px) / 3);
     }
-
- 
 }
 
 .gallery__image {
     width: 336px;
     height: 455px;
     border-radius: 5px;
+
     @media screen and (min-width: 768px) {
         width: 336px;
         height: 455px;
     }
-    
+
     @media screen and (min-width: 1200px) {
         width: 395px;
         height: 574px;
     }
 }
+
 .info {
     font-family: 'Roboto';
     font-size: 12px;
@@ -169,7 +95,7 @@ button[data-action="right-btn"]{
         padding-top: 8px;
         height: 40px;
     }
-    
+
     @media screen and (min-width: 1200px) {
         font-weight: 500;
         font-size: 20px;
@@ -179,21 +105,24 @@ button[data-action="right-btn"]{
     }
 
 }
+
 .title {
     font-size: 12px;
     line-height: 1.33;
     font-weight: 900;
     text-transform: uppercase;
     color: #000000;
+
     @media screen and (min-width: 480px) {}
-    
+
     @media screen and (min-width: 768px) {}
-    
+
     @media screen and (min-width: 1200px) {
         font-size: 20px;
         line-height: 1.2;
     }
 }
+
 .info-description {
     color: #ff6b08;
     font-family: Roboto;
@@ -201,13 +130,21 @@ button[data-action="right-btn"]{
     font-style: normal;
     font-weight: bolder;
     line-height: 16px;
+
     @media screen and (min-width: 480px) {}
-    
+
     @media screen and (min-width: 768px) {}
-    
+
     @media screen and (min-width: 1200px) {
         font-size: 20px;
         line-height: 1.2;
     }
+
 }
+
+body.modal-open {
+    overflow: hidden;
+}
+
+
 

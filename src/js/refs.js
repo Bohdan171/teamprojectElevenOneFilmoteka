@@ -6,6 +6,7 @@ export const refs = {
     modalBackdrop: document.querySelector('.js-backdrop'),
     modalCloseBtn: document.querySelector('.js-close-btn'),
     modal: document.querySelector('.js-modal'),
+    
   
    
     films: document.querySelector('.films'),
@@ -13,4 +14,11 @@ export const refs = {
 
     trailerBackdrop: document.querySelector('.js-backdrop-trailer'),
     trailerIframe: document.querySelector('.js-trailer'),
+    
+  
+    movieGallerySection: document.querySelector('.movie-gallery-js'),
+    divFilter: document.querySelector('.divForFilters'),
+    select: document.querySelector('.js-select'),
+    anchor: document.querySelector('.anchor'),
+    
   };

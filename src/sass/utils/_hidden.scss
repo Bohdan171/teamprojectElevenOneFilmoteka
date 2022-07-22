@@ -14,9 +14,23 @@
     height: 100%;
     top: 0;
     left: 0;
-    background-color: var(--modal-backdrop-color);
+    background-color: rgba(0, 0, 0, 0.25);
     opacity: 1;
     z-index: 4;
   
     transition: opacity 250ms linear, visibility 250ms linear;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
   }
