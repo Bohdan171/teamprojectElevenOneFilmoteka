@@ -1,18 +1,16 @@
-import fetchGenre from './popular/fetchPopular.js';
+//import fetchGenre from './popular/fetchPopular.js';
 import { refs } from './refs.js';
 import aboutMovieTemplates from '../tmp/modalAboutFilm.hbs';
-import { localStorageAPI } from './localStorageAPI.js';
-import { closeOnClick, modalKeypressEsc } from './modalClose.js';
+//import { localStorageAPI } from './localStorageAPI.js';
+//import { closeOnClick, modalKeypressEsc } from './modalClose.js';
 // const newsPictureApi = new Fetch();
-import { watchTrailer } from './modalTrailer.js';
+//import { watchTrailer } from './modalTrailer.js';
 //import axios from 'axios';
-//import PopulаrFilms from './fetchPopular.js';
-//import {fetchGenre} from '../fetchfilm/genre.js'
 
 refs.galleryList.addEventListener('click', onCardClick);
 
 function onCardClick(eve) {
-  const isCardMovie = eve.target.closest('.film-card');
+  const isCardMovie = eve.target.closest('.gallery-items');
   if (!isCardMovie) {
     return;
   }
