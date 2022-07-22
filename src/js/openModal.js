@@ -1,6 +1,6 @@
 //import fetchGenre from './popular/fetchPopular.js';
 import { refs } from './refs.js';
-import aboutMovieTemplates from '../tmp/modalAboutFilm.hbs';
+//import aboutMovieTemplates from '../tmp/modalAboutFilm.hbs';
 //import { localStorageAPI } from './localStorageAPI.js';
 //import { closeOnClick, modalKeypressEsc } from './modalClose.js';
 // const newsPictureApi = new Fetch();

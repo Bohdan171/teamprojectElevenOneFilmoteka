@@ -1,5 +1,5 @@
 import { refs } from './refs.js';
-import aboutMovieTemplates from '../tmp/modalAboutFilm.hbs';
+//import aboutMovieTemplates from '../tmp/modalAboutFilm.hbs';
 
 
 function modalAppearanceToggle() {
