@@ -32,9 +32,9 @@ function createMarkup(results){
         genre_ids = newName.slice(0,2)
         return `
       
-       <div class="film-card gallery-items js-modal">
+       <div class="film-card gallery-items wrapper-img js-modal">
        <a class="gallery__link" href="${url}${poster_path}">
-       <img class="gallery__image" src="${url}${poster_path}" alt="${title}" loading="lazy" />
+       <img class="gallery__image js-card-img" src="${url}${poster_path}" alt="${title}" loading="lazy" />
        </a>
        <div class="info">
          <h2 class="title">
