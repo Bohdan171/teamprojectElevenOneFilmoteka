@@ -148,4 +148,29 @@ body.modal-open {
 }
 
 
+.scroll-top {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 40px;
+    z-index: 999;
+    border: none;
+    outline: none;
+    background-color: #ff6b08;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 30px;
+    text-align: center;
+    transition: 0.5s;
 
+    &_show {
+        display: none;
+        transition: 1s;
+    }
+}
+
+.scroll-top:hover {
+    background-color: getColor('btn-color');
+}

@@ -5,6 +5,7 @@ import './js/example';
 
 import './js/loader';
 // import './js/spinner';
+import './js/scrollTop';
 
 //import './js/openModal';
 //import './js/modalAppearanceToggle';
