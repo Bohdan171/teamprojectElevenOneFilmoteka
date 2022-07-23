@@ -1,19 +1,9 @@
 // import axios from "axios";
 import { ref } from "./ref-pagin";
 import { madeMarkupMorePages, madeMarkupLastPages, madeMarkupFirstPages } from "./markup-pages";
-<<<<<<< Updated upstream
-import { NewFfilms } from "./fetchfilm/fetch.js";
-import { PopulаrFilms } from "./popular/fetchPopular";
-import { createMarkup } from "../index.js";
-
-// const API_KEY = "63c49d80fa037ae8f982024576ca5e08";
-
-// axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
-=======
 import  PopulаrFilms  from './popular/fetchPopular.js';
 import { fetchGenre } from './fetchfilm/genre.js'
 import { createMarkup } from "./markupCard";
->>>>>>> Stashed changes
 
 let page = 1;
 let pagesArray =[];

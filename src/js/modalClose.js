@@ -9,21 +9,10 @@ function modalAppearanceToggle() {
   document.body.classList.toggle('modal-open');
 }
 
-<<<<<<< Updated upstream
-async function renderMovieList(key, page) {
-  if (page === 1) {
-    refs.galleryList.innerHTML = '';
-  }
-}
-export function closeOnClick(e) {
-  if (e.target.closest('.js-close-btn') || e.target === refs.modalBackdrop) {
-    refs.cardContainer.innerHTML = '';
-=======
 
 function closeOnClick(e) {
   if (e.target.closest('.js-close-btn') || e.target === backdropModal) {
     // cardContainer.innerHTML = '';
->>>>>>> Stashed changes
     e.stopPropagation();
     modalAppearanceToggle();
     refs.modalBackdrop.removeEventListener('click', closeOnClick);
