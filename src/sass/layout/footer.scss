@@ -126,7 +126,7 @@ z-index: 3;
     width: 900px;
     height: 450px;
     box-shadow: 0 10px 5px #0000001f, 0 10px 10px #00000024, 0 20px 50px #0003;
-    border-radius: 4px;
+    border-radius: 50px;
     padding: 40px;
     background:
             repeating-linear-gradient(190deg, rgba(255, 0, 0, 0.5) 40px,
@@ -142,38 +142,59 @@ z-index: 3;
             repeating-linear-gradient(23deg, red 50px, orange 100px,
                 yellow 150px, green 200px, blue 250px,
                 indigo 300px, violet 350px, red 370px);
-                @media screen and (min-width: 320px) {
+                @media screen and (max-width: 767px) {
                     overflow: scroll;
+                    padding: 0;
+                    padding: 20px;
+                    height: 100%;
+                    border-radius: 0;
                 }
                 
-                @media screen and (min-width: 768px) {}
-            
-                @media screen and (min-width: 1280px) {
-                    
+                @media screen and (min-width: 768px) and (max-width: 1279px) {
+                    padding: 20px;
+                    width: 740px;
                 }
+            
+                
 }
 
 .footer_modal_close_btn {
     position: absolute;
-    font-size: 30px;
-    top: 0;
-    right: 0;
+    font-size: 35px;
+    top: 20px;
+    right: 30px;
+    background: transparent;
+    padding: 0 15px 5px;
+    transition: transform .25s ease-out;
+    color: #0202024a;
+    border: solid 0.1px;
+    border-radius: 50%;
+    &:hover {
+        transform: scale(1.2);
+    }
 }
 
 .team_name {
     color: #000;
 }
 
-.footer_modal_close_btn {
-    background: transparent;
-    padding: 5px 5px;
-}
 
 .team_cards {
     display: flex;
     flex-wrap: wrap;
-    padding: 30px 65px;
-    
+    justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 65px;
+    padding-right: 65px;
+    @media screen and (max-width: 767px) {
+            padding-top: 30px;
+            flex-direction: column;
+        }
+        @media screen and (min-width: 768px) and (max-width: 1279px) {
+            padding: 40px 0 0;
+            justify-content: center;
+        }
 }
 
 .team_card {
@@ -182,14 +203,45 @@ z-index: 3;
    &:nth-child(4) {
     margin-right: 0;
    }
-   &:nth-child(5) {
-       margin-left: 90px;
-   }
    &:nth-last-child(-n+3) {
 margin-bottom: 0;
    }
+   &:last-child {
+       margin-right: 0;
+   }
+   @media screen and (max-width: 767px) {
+       margin: 0 auto;
+       margin-bottom: 20px;
+    &:nth-child(4) {
+            margin-right: auto;
+        }
+    &:nth-last-child(-n+3) {
+        margin-bottom: 20px;
+    }
+        &:last-child {
+            margin-bottom: 0;
+            margin-right: auto;
+        }
+
+   }
+   @media screen and (min-width: 768px) and (max-width: 1279px) {
+       
+       
+       &:nth-child(4) {
+            margin-right: 0;
+        }
+    
+        &:nth-last-child(-n+3) {
+            margin-bottom: 0;
+        }
+    
+        &:last-child {
+            margin-right: 0;
+        }
+   }
 
 }
+
 .team_card_wrap {
     overflow: hidden;
     position: relative;
