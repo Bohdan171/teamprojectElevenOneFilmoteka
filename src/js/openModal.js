@@ -1,20 +1,10 @@
-import { refs } from './refs.js';
-
-
-//import aboutMovieTemplates from '../tmp/modalAboutFilm.hbs';
-
-
-
-
-//import { localStorageAPI } from './localStorageAPI.js';
-//import { closeOnClick, modalKeypressEsc } from './modalClose.js';
-
-
-
-// const newsPictureApi = new Fetch();
-//import { watchTrailer } from './modalTrailer.js';
-//import axios from 'axios';
-
+const refs = { 
+  galleryList: document.querySelector('.js-gallery-list'),
+  modalBackdrop: document.querySelector('.js-backdrop'),
+  modal: document.querySelector('.js-modal'),
+  trailerBackdrop: document.querySelector('.js-backdrop-trailer'),
+  trailerIframe: document.querySelector('.js-trailer'),
+};
 
 refs.galleryList.addEventListener('click', onCardClick);
 
@@ -94,4 +84,56 @@ function onOpenModal(id) {
       .querySelector('.modal-img-play')
       .addEventListener('click', watchTrailer);
   });
+
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+let player;
+
+
+async function watchTrailer() {
+  const id = document.querySelector('.modal-wrapper').dataset.id;
+  const fetchResult = await FetchAPI.getTrailers(id);
+  refs.trailerBackdrop.classList.remove('is-hidden');
+  if (fetchResult.results.length === 0) {
+    refs.trailerBackdrop.insertAdjacentHTML(
+      'afterbegin',
+      '<div class=""><svg class="" width="280" height="280"><use href="./play-orange.svg"></use></svg></div>'
+    );
+    return;
+  }
+
+  let resultArray = fetchResult.results.find(item => (item.type === 'Trailer' && item.site === 'YouTube'));
+  player = new YT.Player('player', {
+    height: '360',
+    width: '640',
+    videoId: resultArray.key,
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
 }
+
+refs.trailerBackdrop.addEventListener('click', (e) => {
+  e.currentTarget.classList.toggle('is-hidden');
+  refs.trailerBackdrop.innerHTML = '';
+  refs.trailerBackdrop.innerHTML = '<div id="player"></div>';
+  stopVideo();
+});
+
+function onPlayerReady(event) {
+  event.target.playVideo();
+}
+
+function onPlayerStateChange(event) {
+  
+}
+
+function stopVideo() {
+  player.stopVideo();
+}
+}
+
