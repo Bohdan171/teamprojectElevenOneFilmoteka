@@ -3,12 +3,13 @@ import { refs } from './refs.js';
 //import aboutMovieTemplates from '../tmp/modalAboutFilm.hbs';
 
 
-
+backdropModal.addEventListener("click",closeOnClick)
 function modalAppearanceToggle() {
   refs.modalBackdrop.classList.toggle('is-hidden');
   document.body.classList.toggle('modal-open');
 }
 
+<<<<<<< Updated upstream
 async function renderMovieList(key, page) {
   if (page === 1) {
     refs.galleryList.innerHTML = '';
@@ -17,6 +18,12 @@ async function renderMovieList(key, page) {
 export function closeOnClick(e) {
   if (e.target.closest('.js-close-btn') || e.target === refs.modalBackdrop) {
     refs.cardContainer.innerHTML = '';
+=======
+
+function closeOnClick(e) {
+  if (e.target.closest('.js-close-btn') || e.target === backdropModal) {
+    // cardContainer.innerHTML = '';
+>>>>>>> Stashed changes
     e.stopPropagation();
     modalAppearanceToggle();
     refs.modalBackdrop.removeEventListener('click', closeOnClick);
