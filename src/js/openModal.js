@@ -1,15 +1,14 @@
-const refs = { 
-  galleryList: document.querySelector('.js-gallery-list'),
-  modalBackdrop: document.querySelector('.js-backdrop'),
-  modal: document.querySelector('.js-modal'),
-  trailerBackdrop: document.querySelector('.js-backdrop-trailer'),
-  trailerIframe: document.querySelector('.js-trailer'),
-};
 
-refs.galleryList.addEventListener('click', onCardClick);
+const galleryList = document.querySelector('.js-gallery-list');
+const modalBackdrop = document.querySelector('.js-backdrop');
+const modal = document.querySelector('.js-modal');
+const trailerBackdrop = document.querySelector('.js-backdrop-trailer');
+const trailerIframe = document.querySelector('.js-trailer');
+
+galleryList.addEventListener('click', onCardClick);
 
 function onCardClick(eve) {
-  const isCardMovie = eve.target.closest('.gallery-items');
+  const isCardMovie = eve.target.closest('.gallery__link');
   if (!isCardMovie) {
     return;
   }
@@ -19,9 +18,9 @@ function onCardClick(eve) {
 
 function onOpenModal(id) {
   document.addEventListener('keydown', modalKeypressEsc);
-  refs.modalBackdrop.addEventListener('click', closeOnClick);
+  modalBackdrop.addEventListener('click', closeOnClick);
 
-  refs.modalBackdrop.classList.remove('is-hidden');
+  modalBackdrop.classList.remove('is-hidden');
   document.body.classList.add('modal-open');
 
   fetchGenre.searchByMovieId(id).then(movie => {
@@ -96,9 +95,9 @@ let player;
 async function watchTrailer() {
   const id = document.querySelector('.modal-wrapper').dataset.id;
   const fetchResult = await FetchAPI.getTrailers(id);
-  refs.trailerBackdrop.classList.remove('is-hidden');
+  trailerBackdrop.classList.remove('is-hidden');
   if (fetchResult.results.length === 0) {
-    refs.trailerBackdrop.insertAdjacentHTML(
+    trailerBackdrop.insertAdjacentHTML(
       'afterbegin',
       '<div class=""><svg class="" width="280" height="280"><use href="./play-orange.svg"></use></svg></div>'
     );
@@ -117,10 +116,10 @@ async function watchTrailer() {
   });
 }
 
-refs.trailerBackdrop.addEventListener('click', (e) => {
+trailerBackdrop.addEventListener('click', (e) => {
   e.currentTarget.classList.toggle('is-hidden');
-  refs.trailerBackdrop.innerHTML = '';
-  refs.trailerBackdrop.innerHTML = '<div id="player"></div>';
+  trailerBackdrop.innerHTML = '';
+  trailerBackdrop.innerHTML = '<div id="player"></div>';
   stopVideo();
 });
 
