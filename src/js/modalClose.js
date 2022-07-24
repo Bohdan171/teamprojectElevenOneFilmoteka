@@ -5,16 +5,11 @@ const modalCloseBtn = document.querySelector('.js-close-btn');
 const films = document.querySelector('.movie-gallery-js');
 const cardContainer = document.querySelector('.films_container'); 
 
+backdropModal.addEventListener("click", closeOnClick);
 
-function modalAppearanceToggle() {
-  backdropModal.classList.toggle('is-hidden');
-  document.body.classList.toggle('modal-open');
-}
-
-
-function closeOnClick(e) {
+export function closeOnClick(e) {
   if (e.target.closest('.js-close-btn') || e.target === backdropModal) {
-    cardContainer.innerHTML = '';
+    //cardContainer.innerHTML = '';
     e.stopPropagation();
     modalAppearanceToggle();
     backdropModal.removeEventListener('click', closeOnClick);
@@ -33,16 +28,22 @@ async function renderMovieList(key, page) {
   }
 }
 
-function modalKeypressEsc(e) {
+
+export function modalKeypressEsc(e) {
   if (e.keyCode === 27) {
-    cardContainer.innerHTML = '';
+    //cardContainer.innerHTML = '';
     modalAppearanceToggle();
     document.removeEventListener('keydown', modalKeypressEsc);
     if (
-      refs.films.dataset.page === 'queue' ||
-      refs.films.dataset.page === 'watched'
+      films.dataset.page === 'queue' ||
+      films.dataset.page === 'watched'
     ) {
       renderMovieList(films.dataset.page, 1);
     }
   }
+}
+
+function modalAppearanceToggle() {
+  backdropModal.classList.toggle('is-hidden');
+  document.body.classList.remove('modal-open');
 }

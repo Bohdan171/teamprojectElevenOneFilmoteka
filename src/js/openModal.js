@@ -1,14 +1,21 @@
+import  fetchAPI  from './fetchfilm/index';
+import {closeOnClick, modalKeypressEsc}  from './modalClose';
+import  watchTrailer  from './modalTrailer';
+
+
 
 const galleryList = document.querySelector('.js-gallery-list');
 const modalBackdrop = document.querySelector('.js-backdrop');
 const modal = document.querySelector('.js-modal');
 const trailerBackdrop = document.querySelector('.js-backdrop-trailer');
 const trailerIframe = document.querySelector('.js-trailer');
+const cardContainer = document.querySelector('.card-container');
+
 
 galleryList.addEventListener('click', onCardClick);
 
-function onCardClick(eve) {
-  const isCardMovie = eve.target.closest('.gallery__link');
+function onCardClick(event) {
+  const isCardMovie = event.target.closest('.gallery-items');
   if (!isCardMovie) {
     return;
   }
@@ -23,21 +30,23 @@ function onOpenModal(id) {
   modalBackdrop.classList.remove('is-hidden');
   document.body.classList.add('modal-open');
 
-  fetchGenre.searchByMovieId(id).then(movie => {
+  fetchAPI.searchByMovieId(id).then(movie => {
+    let currentPageLanguage = localStorage.getItem('language');
+
+    if (currentPageLanguage === 'en-US') {
+      cardContainer.insertAdjacentHTML('beforeend', aboutMovieTemplates(movie));
+    } else if (currentPageLanguage === 'ru-RU') {
+      cardContainer.insertAdjacentHTML('beforeend', aboutMovieTemplatesRU(movie));
+
+    }
     const w = localStorageAPI.check(localStorageAPI.KEYS.WATCHED, movie);
     const q = localStorageAPI.check(localStorageAPI.KEYS.QUEUE, movie);
     if (w) {
-      document
-        .querySelector('.js-modal-btn-watched')
-        .classList.toggle('visually-hidden');
-      document
-        .querySelector('.js-modal-btn-remove-watched')
-        .classList.toggle('visually-hidden');
+      document.querySelector('.js-modal-btn-watched').classList.toggle('visually-hidden');
+      document.querySelector('.js-modal-btn-remove-watched').classList.toggle('visually-hidden');
     }
 
-    document
-      .querySelector('.js-modal-btn-watched')
-      .addEventListener('click', onWatchedAdd);
+    document.querySelector('.js-modal-btn-watched').addEventListener('click', onWatchedAdd);
     function onWatchedAdd(event) {
       event.target.classList.toggle('visually-hidden');
       event.target.nextElementSibling.classList.toggle('visually-hidden');
@@ -54,85 +63,90 @@ function onOpenModal(id) {
     }
 
     if (q) {
-      document
-        .querySelector('.js-modal-btn-queue')
-        .classList.toggle('visually-hidden');
-      document
-        .querySelector('.js-modal-btn-remove-queue')
-        .classList.toggle('visually-hidden');
+      document.querySelector('.js-modal-btn-queue').classList.toggle('visually-hidden');
+      document.querySelector('.js-modal-btn-remove-queue').classList.toggle('visually-hidden');
     }
 
-    document
-      .querySelector('.js-modal-btn-queue')
-      .addEventListener('click', onQueueAdd);
+    document.querySelector('.js-modal-btn-queue').addEventListener('click', onQueueAdd);
     function onQueueAdd(event) {
       event.target.classList.toggle('visually-hidden');
       event.target.nextElementSibling.classList.toggle('visually-hidden');
       localStorageAPI.set(localStorageAPI.KEYS.QUEUE, movie);
     }
 
-    document
-      .querySelector('.js-modal-btn-remove-queue')
-      .addEventListener('click', onQueueRemove);
+    document.querySelector('.js-modal-btn-remove-queue').addEventListener('click', onQueueRemove);
     function onQueueRemove(event) {
       event.target.classList.toggle('visually-hidden');
       event.target.previousElementSibling.classList.toggle('visually-hidden');
       localStorageAPI.delete(localStorageAPI.KEYS.QUEUE, movie);
     }
-    document
-      .querySelector('.modal-img-play')
+    document.querySelector('.modal-img-play')
       .addEventListener('click', watchTrailer);
   });
+}
 
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-let player;
-
-
-async function watchTrailer() {
-  const id = document.querySelector('.modal-wrapper').dataset.id;
-  const fetchResult = await FetchAPI.getTrailers(id);
-  trailerBackdrop.classList.remove('is-hidden');
-  if (fetchResult.results.length === 0) {
-    trailerBackdrop.insertAdjacentHTML(
-      'afterbegin',
-      '<div class=""><svg class="" width="280" height="280"><use href="./play-orange.svg"></use></svg></div>'
-    );
-    return;
+let list = new Array();
+class localStorageAPI {
+  constructor() {}
+  static get KEYS() {
+    return {
+      WATCHED: 'watched',
+      QUEUE: 'queue',
+      THEME: 'theme',
+    };
+  }
+  static get(key) {
+    const data = localStorage.getItem(key);
+    return JSON.parse(data);
   }
 
-  let resultArray = fetchResult.results.find(item => (item.type === 'Trailer' && item.site === 'YouTube'));
-  player = new YT.Player('player', {
-    height: '360',
-    width: '640',
-    videoId: resultArray.key,
-    events: {
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
+  static set(key, Obj) {
+    if (!localStorageAPI.get(key)) {
+      list.push(Obj);
+      localStorage.setItem(key, JSON.stringify(list));
+      list = [];
+      return;
     }
-  });
-}
 
-trailerBackdrop.addEventListener('click', (e) => {
-  e.currentTarget.classList.toggle('is-hidden');
-  trailerBackdrop.innerHTML = '';
-  trailerBackdrop.innerHTML = '<div id="player"></div>';
-  stopVideo();
-});
+    list = localStorageAPI.get(key);
+    if (list.find(item => item.id === Obj.id) !== undefined) {
+      return;
+    }
+    list.push(Obj);
+    localStorage.setItem(key, JSON.stringify(list));
+  }
+  static delete(key, Obj) {
+    if (!localStorageAPI.get(key)) {
+      return;
+    }
+    let list = localStorageAPI.get(key);
+    const searchIndex = list.findIndex(item => item.id === Obj.id);
+    if (searchIndex !== -1) {
+      list.splice(searchIndex, 1);
+      localStorage.setItem(key, JSON.stringify(list));
+    }
+  }
 
-function onPlayerReady(event) {
-  event.target.playVideo();
-}
+  static check(key, Obj) {
+    if (!localStorageAPI.get(key)) return false;
 
-function onPlayerStateChange(event) {
-  
-}
+    list = localStorageAPI.get(key);
+    if (list.find(item => item.id === Obj.id)) return true;
 
-function stopVideo() {
-  player.stopVideo();
-}
+    return false;
+  }
+  static getDataPerPage(key, page = 1, perPage = 18) {
+    const data = localStorageAPI.get(key);
+    if (!data || data.length === 0) {
+      return;
+    }
+    let forRender;
+    forRender = data.slice(0 + perPage * (page - 1), perPage * page);
+
+    if (page === 1) {
+      forRender = data.slice(0, perPage);
+    }
+    return forRender;
+  }
 }
 

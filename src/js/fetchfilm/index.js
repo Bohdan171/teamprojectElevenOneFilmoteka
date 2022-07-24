@@ -1,46 +1,46 @@
 import NewFilms from './fetch.js';
-import {fetchGenre} from './genre.js'
+import {fetchGenre} from './genre.js';
 
 const form = document.querySelector(".search-form");
 const input = document.querySelector('.search-field');
-const gallery = document.querySelector(".gallary")
-console.log(gallery)
-console.log(input)
+const gallery = document.querySelector(".gallary");
+console.log(gallery);
+console.log(input);
 
 const newFilms = new NewFilms();
 
-console.log(newFilms)
+console.log(newFilms);
 
 form.addEventListener("submit", onSubmit);
 
 async function onSubmit(evt){
-    evt.preventDefault()
-    fetchGenre()
+    evt.preventDefault();
+    fetchGenre();
              
     newFilms.name = input.value.trim();
-    console.log(input.value)
+    console.log(input.value);
     newFilms.fetch()
   .then(data => {
-    console.log(data.results)
-    return data.results
+    console.log(data.results);
+    return data.results;
   })
-  .then(results => {gallery.innerHTML = createMarkup(results)})
+  .then(results => {gallery.innerHTML = createMarkup(results);});
 }
 
     
 
 function createMarkup(results){
     const markup = results.map(({title, poster_path, release_date = "2021-01-01", genre_ids}) => {
-        const url = `https://image.tmdb.org/t/p/w500`
-        const date = release_date.slice(0, 4)
-        const genreItems = JSON.parse(localStorage.getItem("genre")).genres
-          let newName = []
+        const url = `https://image.tmdb.org/t/p/w500`;
+        const date = release_date.slice(0, 4);
+        const genreItems = JSON.parse(localStorage.getItem("genre")).genres;
+          let newName = [];
         for (const genre of genreItems){
           for (const el of genre_ids){
           if (genre.id === el){
-            newName.push(genre.name)} }          
+            newName.push(genre.name);} }          
       }
-      genre_ids = newName.slice(0, 2)
+      genre_ids = newName.slice(0, 2);
         return `
         
        <div class="film-card">
@@ -64,4 +64,4 @@ function createMarkup(results){
      </div>`;}).join("");
     return markup;
      
- };
+ }
