@@ -1,4 +1,3 @@
-
 const galleryListModal = document.querySelector('.js-gallery-list');
 const backdropModal = document.querySelector('.js-backdrop');
 const modalCloseBtn = document.querySelector('.js-close-btn');
