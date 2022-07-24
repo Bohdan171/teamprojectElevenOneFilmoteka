@@ -1,4 +1,4 @@
-import  fetchAPI  from './fetchfilm/index';
+import  fetchAPI  from './fetchfilm/fetch';
 import {closeOnClick, modalKeypressEsc}  from './modalClose';
 import  watchTrailer  from './modalTrailer';
 
