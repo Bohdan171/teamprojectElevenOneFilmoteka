@@ -32,6 +32,7 @@
 //         genre_ids = newName.slice(0,2)
 //         return `
       
+
 //        <div class="film-card gallery-items">
 //        <a class="gallery__link" href="${url}${poster_path}">
 //        <img class="gallery__image js-card-img" src="${url}${poster_path}" alt="${title}" loading="lazy" />
@@ -47,6 +48,7 @@
 //            ${date}
 //          </b>
 //          </p>
+
          
 //        </div>
 //      </div>`;}).join("");

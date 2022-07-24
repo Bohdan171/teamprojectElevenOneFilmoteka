@@ -1,25 +1,14 @@
-import { refs } from './refs.js';
 
+const galleryList = document.querySelector('.js-gallery-list');
+const modalBackdrop = document.querySelector('.js-backdrop');
+const modal = document.querySelector('.js-modal');
+const trailerBackdrop = document.querySelector('.js-backdrop-trailer');
+const trailerIframe = document.querySelector('.js-trailer');
 
-//import aboutMovieTemplates from '../tmp/modalAboutFilm.hbs';
-
-
-
-
-//import { localStorageAPI } from './localStorageAPI.js';
-//import { closeOnClick, modalKeypressEsc } from './modalClose.js';
-
-
-
-// const newsPictureApi = new Fetch();
-//import { watchTrailer } from './modalTrailer.js';
-//import axios from 'axios';
-
-
-refs.galleryList.addEventListener('click', onCardClick);
+galleryList.addEventListener('click', onCardClick);
 
 function onCardClick(eve) {
-  const isCardMovie = eve.target.closest('.gallery-items');
+  const isCardMovie = eve.target.closest('.gallery__link');
   if (!isCardMovie) {
     return;
   }
@@ -29,9 +18,9 @@ function onCardClick(eve) {
 
 function onOpenModal(id) {
   document.addEventListener('keydown', modalKeypressEsc);
-  refs.modalBackdrop.addEventListener('click', closeOnClick);
+  modalBackdrop.addEventListener('click', closeOnClick);
 
-  refs.modalBackdrop.classList.remove('is-hidden');
+  modalBackdrop.classList.remove('is-hidden');
   document.body.classList.add('modal-open');
 
   fetchGenre.searchByMovieId(id).then(movie => {
@@ -94,4 +83,56 @@ function onOpenModal(id) {
       .querySelector('.modal-img-play')
       .addEventListener('click', watchTrailer);
   });
+
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+let player;
+
+
+async function watchTrailer() {
+  const id = document.querySelector('.modal-wrapper').dataset.id;
+  const fetchResult = await FetchAPI.getTrailers(id);
+  trailerBackdrop.classList.remove('is-hidden');
+  if (fetchResult.results.length === 0) {
+    trailerBackdrop.insertAdjacentHTML(
+      'afterbegin',
+      '<div class=""><svg class="" width="280" height="280"><use href="./play-orange.svg"></use></svg></div>'
+    );
+    return;
+  }
+
+  let resultArray = fetchResult.results.find(item => (item.type === 'Trailer' && item.site === 'YouTube'));
+  player = new YT.Player('player', {
+    height: '360',
+    width: '640',
+    videoId: resultArray.key,
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
 }
+
+trailerBackdrop.addEventListener('click', (e) => {
+  e.currentTarget.classList.toggle('is-hidden');
+  trailerBackdrop.innerHTML = '';
+  trailerBackdrop.innerHTML = '<div id="player"></div>';
+  stopVideo();
+});
+
+function onPlayerReady(event) {
+  event.target.playVideo();
+}
+
+function onPlayerStateChange(event) {
+  
+}
+
+function stopVideo() {
+  player.stopVideo();
+}
+}
+
