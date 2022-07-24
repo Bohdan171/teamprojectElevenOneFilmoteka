@@ -1,16 +1,16 @@
 import axios from 'axios';
-const BASE_URL = 'https://api.themoviedb.org/3/search/movie'
+const BASE_URL = 'https://api.themoviedb.org/3/search/movie';
 
 export default class NewFilms{ 
     constuctor(){
-      this.name = ""  
+      this.name = "";
     }
    
          get query(){
-        return this.name
+        return this.name;
       }
       set query(newQuary){
-        this.name = newQuary
+        this.name = newQuary;
       }
     
 
@@ -18,7 +18,7 @@ export default class NewFilms{
       try {
         let page = data;
         const keyapi = '4bceebe1d1f9bc99c966449bdeaecb86';
-        const requestparams = `?api_key=${keyapi}&language=en-US&page=${page}&include_adult=false&query=${this.name}`
+        const requestparams = `?api_key=${keyapi}&language=en-US&page=${page}&include_adult=false&query=${this.name}`;
 
         const url = BASE_URL + requestparams;
         
