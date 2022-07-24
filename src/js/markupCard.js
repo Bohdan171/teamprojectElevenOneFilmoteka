@@ -1,5 +1,5 @@
-export function createMarkup(results) {
-       const markup = results.map(({title, poster_path, release_date = "2021-01-01", genre_ids}) => {
+export  function createMarkup(results) {
+  const markup = results.map(({ title, poster_path, release_date = "2021-01-01", genre_ids }) => {
         const url = `https://image.tmdb.org/t/p/w500`
         const date = release_date.slice(0, 4)
         const genreItems = JSON.parse(localStorage.getItem("genre")).genres

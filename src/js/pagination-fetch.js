@@ -12,17 +12,16 @@ let totalPages;
 
 ref.pagBox.addEventListener("click", onPageBtnClick);
 
+madeMarkupPopular();
 
 const populаrFilms = new PopulаrFilms();
-console.log(populаrFilms)
+// console.log(populаrFilms)
 
 async function madeMarkupPopular() {
-  await fetchGenre()
+  await fetchGenre();
     populаrFilms.fetch(page)
     .then(data => {
       totalPages = data.total_pages;
-
-      console.log(data.results)
       return data.results;
     })
      .then(results => { ref.gallary.innerHTML = createMarkup(results) })
@@ -30,53 +29,90 @@ async function madeMarkupPopular() {
 
 
 async function onPageBtnClick(e) {
-  console.log(pagesArray);
-   if (ref.selectedPage) {
+  // if (e.type !== "click") {
+
+  //   ref.pagBox.classList.add("is-hidden");
+  //   return;
+  // }
+  console.log(e);
+  let nodeElem = e.target.nodeName;
+  console.log(nodeElem);
+  let targetElem = e.target.dataset.action;
+  // console.log(targetElem);
+  if (nodeElem == "DIV") {
+    return;
+  };
+  //  if (nodeElem !== "BUTTON" || nodeElem !== "LI") {
+  //   return
+  // };
+ if (ref.selectedPage) {
       ref.selectedPage.classList.remove("pagination-list_item--selected");
   };
-  
-  let targetElem = e.target.dataset.action;
-  let nodeElem = e.target.nodeName;
   let n = totalPages - 4;
-  if (nodeElem !== "BUTTON" || nodeElem !== "LI");
-  if (e.target.textContent === "...") {
-    return;
-  }
   
  
+  if (e.target.textContent === "...") {
+    return;
+  };
+   
   if (targetElem === "btn-page") {
     page = Number(e.target.textContent);
   };
-  if (targetElem === "right-btn" || nodeElem === "use" || nodeElem == "svg") {
+  if (targetElem === "right-btn") {
+
          page = Number(page)+1;
   };
-    if (targetElem === "left-btn"||nodeElem ==="use"||nodeElem === "svg") {
+  if (targetElem === "left-btn") {
+    
          page = Number(page)-1;
   };
 
   if (page <= 0 || page > totalPages) {
     return;
   };
-  if (page >= 1 || page <= 5) {
-    if (e.target.tagName === 'li') {
-      e.target.classList.add('pagination-list_item--selected')
-     };
+  madeMarkupPopular();
+   if (page >= 1 || page <= 5) {
+    
     madeMarkupFirstPages();
+    movePagesForFirstFivePage(page);
+       
   };
-  console.log(pagesArray);
-  if (page > 5) {
+  
+    if (page > 5) {
     pagesArray = [page - 2, page - 1, page, page + 1, page + 2];
     madeMarkupMorePages(pagesArray,totalPages);
   };
   if (page >= n) {
     pagesArray = [totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
-    // e.target.classList.add('pagination-list_item--selected');
     madeMarkupLastPages(pagesArray);
-  }
-    madeMarkupPopular();
- 
+    movePagesForLastFivePage(totalPages,page);
+  };
+     
+  window.scrollTo(0, 0);
 
 };
 
 
-madeMarkupPopular();
+
+function movePagesForFirstFivePage(data) {
+  if (data > 5) {
+    return;
+   }
+  let lips = document.querySelectorAll("li[data-action='btn-page']")
+  let needPage = lips[page - 1];
+    needPage.classList.add('pagination-list_item--selected');
+    
+  
+};
+function movePagesForLastFivePage(allPages, currentPage) {
+  if (currentPage < allPages - 4) {
+    return;
+  }
+  let totalPages = allPages;
+  let page = currentPage;
+  let lips = document.querySelectorAll('li[data-action="btn-page"]')
+    
+  let p = -1*(totalPages - (page + 4));
+    let needPage = lips[p];
+     needPage.classList.add('pagination-list_item--selected');
+};
