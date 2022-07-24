@@ -10,7 +10,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 let player;
 
 
-async function watchTrailer() {
+export async function watchTrailer() {
     const id = document.querySelector('.modal-wrapper').dataset.id;
     const fetchResult = await FetchAPI.getTrailers(id);
     trailerBackdrop.classList.remove('is-hidden');
