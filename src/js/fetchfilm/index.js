@@ -18,10 +18,8 @@ async function onSubmit(evt){
     fetchGenre();
              
     newFilms.name = input.value.trim();
-    console.log(input.value);
     newFilms.fetch()
   .then(data => {
-    console.log(data.results);
     return data.results;
   })
   .then(results => {gallery.innerHTML = createMarkup(results);});

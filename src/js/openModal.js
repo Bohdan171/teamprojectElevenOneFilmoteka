@@ -1,7 +1,8 @@
 import  fetchAPI  from './fetchfilm/fetch';
 import {closeOnClick, modalKeypressEsc}  from './modalClose';
-import  watchTrailer  from './modalTrailer';
-
+import watchTrailer from './modalTrailer';
+import  PopulаrFilms  from './popular/fetchPopular.js';
+import { makeModalCard } from "./markupModalCard.js";
 
 
 const galleryList = document.querySelector('.js-gallery-list');
@@ -13,76 +14,110 @@ const cardContainer = document.querySelector('.card-container');
 
 
 galleryList.addEventListener('click', onCardClick);
+modalBackdrop.classList.add("is-hidden");
+
+const populаrFilms = new PopulаrFilms();
+let arrayJSON;
+let dataFilms;
+let film;
 
 function onCardClick(event) {
   const isCardMovie = event.target.closest('.gallery-items');
   if (!isCardMovie) {
     return;
   }
-  const idMovie = isCardMovie.dataset.index;
-  onOpenModal(idMovie);
+  let idFilm=isCardMovie.dataset.modal;
+  onOpenModal(idFilm);
 }
 
+function findGenre(obj) {
+  let arrayGenre = obj.genre_ids;
+  let g = arrayGenre[0];
+  let genreFilms = JSON.parse(localStorage.getItem("genre")).genres;
+  let currentGenre = genreFilms.find(item => item.id === g);
+  if (!currentGenre) {
+    return "";
+  }
+return currentGenre.name;
+};
+
 function onOpenModal(id) {
+  event.preventDefault();
   document.addEventListener('keydown', modalKeypressEsc);
   modalBackdrop.addEventListener('click', closeOnClick);
 
   modalBackdrop.classList.remove('is-hidden');
   document.body.classList.add('modal-open');
+  let needId = Number(id);
+  arrayJSON = localStorage.getItem("array-films");
+  dataFilms = JSON.parse(arrayJSON);
+  film = dataFilms.find(film => film.id === needId);
+  let genre_ids = findGenre(film);
+  modal.innerHTML = makeModalCard(film,genre_ids);
+  
+  
+//   populаrFilms.fetch(1)
+//     .then(search => {
+//       let api = search.results;
+//       return api;
+   
+//     })
+//     .then(api => {
+//       console.log(api);
+//     })
+// .then(movie => {
+//     let currentPageLanguage = localStorage.getItem('language');
 
-  fetchAPI.searchByMovieId(id).then(movie => {
-    let currentPageLanguage = localStorage.getItem('language');
+//     if (currentPageLanguage === 'en-US') {
+//       cardContainer.insertAdjacentHTML('beforeend', aboutMovieTemplates(movie));
+//     } else if (currentPageLanguage === 'ru-RU') {
+//       cardContainer.insertAdjacentHTML('beforeend', aboutMovieTemplatesRU(movie));
 
-    if (currentPageLanguage === 'en-US') {
-      cardContainer.insertAdjacentHTML('beforeend', aboutMovieTemplates(movie));
-    } else if (currentPageLanguage === 'ru-RU') {
-      cardContainer.insertAdjacentHTML('beforeend', aboutMovieTemplatesRU(movie));
+//     }
+//     const w = localStorageAPI.check(localStorageAPI.KEYS.WATCHED, movie);
+//     const q = localStorageAPI.check(localStorageAPI.KEYS.QUEUE, movie);
+//     if (w) {
+//       document.querySelector('.js-modal-btn-watched').classList.toggle('visually-hidden');
+//       document.querySelector('.js-modal-btn-remove-watched').classList.toggle('visually-hidden');
+//     }
 
-    }
-    const w = localStorageAPI.check(localStorageAPI.KEYS.WATCHED, movie);
-    const q = localStorageAPI.check(localStorageAPI.KEYS.QUEUE, movie);
-    if (w) {
-      document.querySelector('.js-modal-btn-watched').classList.toggle('visually-hidden');
-      document.querySelector('.js-modal-btn-remove-watched').classList.toggle('visually-hidden');
-    }
+//     document.querySelector('.js-modal-btn-watched').addEventListener('click', onWatchedAdd);
+//     function onWatchedAdd(event) {
+//       event.target.classList.toggle('visually-hidden');
+//       event.target.nextElementSibling.classList.toggle('visually-hidden');
+//       localStorageAPI.set(localStorageAPI.KEYS.WATCHED, movie);
+//     }
 
-    document.querySelector('.js-modal-btn-watched').addEventListener('click', onWatchedAdd);
-    function onWatchedAdd(event) {
-      event.target.classList.toggle('visually-hidden');
-      event.target.nextElementSibling.classList.toggle('visually-hidden');
-      localStorageAPI.set(localStorageAPI.KEYS.WATCHED, movie);
-    }
+//     document
+//       .querySelector('.js-modal-btn-remove-watched')
+//       .addEventListener('click', onWatchedRemove);
+//     function onWatchedRemove(event) {
+//       event.target.classList.toggle('visually-hidden');
+//       event.target.previousElementSibling.classList.toggle('visually-hidden');
+//       localStorageAPI.delete(localStorageAPI.KEYS.WATCHED, movie);
+//     }
 
-    document
-      .querySelector('.js-modal-btn-remove-watched')
-      .addEventListener('click', onWatchedRemove);
-    function onWatchedRemove(event) {
-      event.target.classList.toggle('visually-hidden');
-      event.target.previousElementSibling.classList.toggle('visually-hidden');
-      localStorageAPI.delete(localStorageAPI.KEYS.WATCHED, movie);
-    }
+//     if (q) {
+//       document.querySelector('.js-modal-btn-queue').classList.toggle('visually-hidden');
+//       document.querySelector('.js-modal-btn-remove-queue').classList.toggle('visually-hidden');
+//     }
 
-    if (q) {
-      document.querySelector('.js-modal-btn-queue').classList.toggle('visually-hidden');
-      document.querySelector('.js-modal-btn-remove-queue').classList.toggle('visually-hidden');
-    }
+//     document.querySelector('.js-modal-btn-queue').addEventListener('click', onQueueAdd);
+//     function onQueueAdd(event) {
+//       event.target.classList.toggle('visually-hidden');
+//       event.target.nextElementSibling.classList.toggle('visually-hidden');
+//       localStorageAPI.set(localStorageAPI.KEYS.QUEUE, movie);
+//     }
 
-    document.querySelector('.js-modal-btn-queue').addEventListener('click', onQueueAdd);
-    function onQueueAdd(event) {
-      event.target.classList.toggle('visually-hidden');
-      event.target.nextElementSibling.classList.toggle('visually-hidden');
-      localStorageAPI.set(localStorageAPI.KEYS.QUEUE, movie);
-    }
-
-    document.querySelector('.js-modal-btn-remove-queue').addEventListener('click', onQueueRemove);
-    function onQueueRemove(event) {
-      event.target.classList.toggle('visually-hidden');
-      event.target.previousElementSibling.classList.toggle('visually-hidden');
-      localStorageAPI.delete(localStorageAPI.KEYS.QUEUE, movie);
-    }
-    document.querySelector('.modal-img-play')
-      .addEventListener('click', watchTrailer);
-  });
+//     document.querySelector('.js-modal-btn-remove-queue').addEventListener('click', onQueueRemove);
+//     function onQueueRemove(event) {
+//       event.target.classList.toggle('visually-hidden');
+//       event.target.previousElementSibling.classList.toggle('visually-hidden');
+//       localStorageAPI.delete(localStorageAPI.KEYS.QUEUE, movie);
+//     }
+//     document.querySelector('.modal-img-play')
+//       .addEventListener('click', watchTrailer);
+//   });
 }
 
 let list = new Array();

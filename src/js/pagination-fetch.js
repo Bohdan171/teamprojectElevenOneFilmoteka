@@ -8,7 +8,7 @@ import { createMarkup } from "./markupCard";
 let page = 1;
 let pagesArray =[];
 let totalPages;
-
+let arrayJSON;
 
 ref.pagBox.addEventListener("click", onPageBtnClick);
 
@@ -22,6 +22,8 @@ async function madeMarkupPopular() {
     populаrFilms.fetch(page)
     .then(data => {
       totalPages = data.total_pages;
+      localStorage.setItem("array-films", JSON.stringify(data.results));
+      arrayJSON  = localStorage.getItem("array-films");
       return data.results;
     })
      .then(results => { ref.gallary.innerHTML = createMarkup(results) })
