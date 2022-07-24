@@ -14,8 +14,9 @@ export default class NewFilms{
       }
     
 
-    async  fetch(page) {
+    async  fetch(data) {
       try {
+        let page = data;
         const keyapi = '4bceebe1d1f9bc99c966449bdeaecb86';
         const requestparams = `?api_key=${keyapi}&language=en-US&page=${page}&include_adult=false&query=${this.name}`
 
