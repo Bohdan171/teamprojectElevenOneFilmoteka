@@ -1,6 +1,6 @@
 import './js/example';
 
-// import './js/pagination-fetch';
+import './js/pagination-fetch';
 
 
 import './js/loader';

@@ -5,7 +5,7 @@ const modalCloseBtn = document.querySelector('.js-close-btn');
 const films = document.querySelector('.movie-gallery-js');
 const cardContainer = document.querySelector('.films_container'); 
 
-
+backdropModal.addEventListener("click",closeOnClick)
 function modalAppearanceToggle() {
   backdropModal.classList.toggle('is-hidden');
   document.body.classList.toggle('modal-open');
@@ -14,7 +14,9 @@ function modalAppearanceToggle() {
 
 function closeOnClick(e) {
   if (e.target.closest('.js-close-btn') || e.target === backdropModal) {
-    cardContainer.innerHTML = '';
+
+    // cardContainer.innerHTML = '';
+
     e.stopPropagation();
     modalAppearanceToggle();
     backdropModal.removeEventListener('click', closeOnClick);

@@ -1,22 +1,40 @@
-import axios from "axios";
+// import axios from "axios";
 import { ref } from "./ref-pagin";
 import { madeMarkupMorePages, madeMarkupLastPages, madeMarkupFirstPages } from "./markup-pages";
-import { NewFilms } from "./fetchfilm/fetch.js";
-import { PopulаrFilms } from "./popular/fetchPopular";
-import { createMarkup } from "../index.js";
-
-// const API_KEY = "63c49d80fa037ae8f982024576ca5e08";
-
-// axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
+import  PopulаrFilms  from './popular/fetchPopular.js';
+import { fetchGenre } from './fetchfilm/genre.js'
+import { createMarkup } from "./markupCard";
 
 let page = 1;
-let pagesArray;
+let pagesArray =[];
 let totalPages;
 
-madeMarkupPopular();
-ref.pagBox.addEventListener("click", onClick);
 
-async function onClick(e) {
+ref.pagBox.addEventListener("click", onPageBtnClick);
+
+
+const populаrFilms = new PopulаrFilms();
+console.log(populаrFilms)
+
+async function madeMarkupPopular() {
+  await fetchGenre()
+    populаrFilms.fetch(page)
+    .then(data => {
+      totalPages = data.total_pages;
+
+      console.log(data.results)
+      return data.results;
+    })
+     .then(results => { ref.gallary.innerHTML = createMarkup(results) })
+}
+
+
+async function onPageBtnClick(e) {
+  console.log(pagesArray);
+   if (ref.selectedPage) {
+      ref.selectedPage.classList.remove("pagination-list_item--selected");
+  };
+  
   let targetElem = e.target.dataset.action;
   let nodeElem = e.target.nodeName;
   let n = totalPages - 4;
@@ -24,10 +42,8 @@ async function onClick(e) {
   if (e.target.textContent === "...") {
     return;
   }
+  
  
-  if (ref.selectedPage) {
-      ref.selectedPage.classList.remove('pagination-list_item--selected');
-  };
   if (targetElem === "btn-page") {
     page = Number(e.target.textContent);
   };
@@ -41,57 +57,26 @@ async function onClick(e) {
   if (page <= 0 || page > totalPages) {
     return;
   };
-   if (page >= 1 || page <= 5) {
+  if (page >= 1 || page <= 5) {
+    if (e.target.tagName === 'li') {
+      e.target.classList.add('pagination-list_item--selected')
+     };
     madeMarkupFirstPages();
   };
+  console.log(pagesArray);
   if (page > 5) {
     pagesArray = [page - 2, page - 1, page, page + 1, page + 2];
-    madeMarkupMorePages()  
+    madeMarkupMorePages(pagesArray,totalPages);
   };
   if (page >= n) {
     pagesArray = [totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
-    madeMarkupLastPages();
+    // e.target.classList.add('pagination-list_item--selected');
+    madeMarkupLastPages(pagesArray);
   }
     madeMarkupPopular();
  
-// e.target.classList.add('pagination-list_item--selected');
+
 };
 
 
-
-
-// function madeMarkup(data) { 
- 
-//          const markup = data.map(({ poster_path }) => {
-//             return `<li><img class = "gallery_img" src=https://image.tmdb.org/t/p/w154${poster_path} alt="" loading="lazy" /></li>`
-//          }).join("");
-        
-//     return  ref.gallary.insertAdjacentHTML("beforeend", markup);
-// };
-
-//  async function getFilms(page) {
-//     try {
-      
-//       const response = await axios.get(`trending/all/day?api_key=${API_KEY}&language=en-US&page=${page}`);
-//       console.log(response);
-//        totalPages = response.data.total_pages;
-//       // console.log(totalPages);
-//        const data = response.data.results;
-      
-//         return data;
-        
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
-
-
-async function madeMarkupPopular() {
-    const popular = await PopulаrFilms(page);
-  createMarkup(popular);
-};
-
-
-
-
+madeMarkupPopular();

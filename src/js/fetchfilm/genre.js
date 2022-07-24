@@ -1,7 +1,7 @@
 import axios from 'axios';
 const genreKey = "genre"
 
-export  const  fetchGenre = async () =>{
+export   const  fetchGenre = async () =>{
      
         try{
     const keyapi = '4bceebe1d1f9bc99c966449bdeaecb86';
