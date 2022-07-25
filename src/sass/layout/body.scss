@@ -67,6 +67,9 @@
     width: calc((100% - 2 * 16px) / 3);
     }
 }
+body.dark .title {
+    color: #f7f7f7;
+}
 
 .gallery__image {
     width: 336px;
