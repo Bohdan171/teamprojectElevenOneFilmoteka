@@ -2,21 +2,21 @@
     position: relative;
 }
 
-// .films__container {
-//     padding: 20px;
+.films__container {
+    padding-bottom: 40px;
 
-//     @media screen and (min-width: 480px) {
-//         padding: 20px;
-//     }
+    @media screen and (min-width: 480px) {
+        padding-bottom: 40px;
+    }
 
-//     @media screen and (min-width: 768px) {
-//         padding: 59px 32px;
-//     }
+    @media screen and (min-width: 768px) {
+        padding-bottom: 59px;
+    }
 
-//     @media screen and (min-width: 1200px) {
-//         padding: 60px 32px;
-//     }
-// }
+    @media screen and (min-width: 1200px) {
+        padding-bottom: 60px;
+    }
+}
 
 .gallary {
     display: flex;
