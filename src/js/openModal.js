@@ -36,7 +36,7 @@ function findGenre(obj) {
   let genreFilms = JSON.parse(localStorage.getItem("genre")).genres;
   let currentGenre = genreFilms.find(item => item.id === g);
   if (!currentGenre) {
-    return "";
+    return "Other";
   }
 return currentGenre.name;
 };
