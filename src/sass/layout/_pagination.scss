@@ -86,3 +86,8 @@ justify-content: center;
 button[data-action="right-btn"] {
     margin-left: 20px;
 }
+
+
+body.dark .pagination-list_item {
+    color: #F7F7F7;
+}
