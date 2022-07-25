@@ -1,6 +1,5 @@
-import  fetchAPI  from './fetchfilm/fetch';
 import {closeOnClick, modalKeypressEsc}  from './modalClose';
-import watchTrailer from './modalTrailer';
+import {watchTrailer} from './modalTrailer';
 import  PopulаrFilms  from './popular/fetchPopular.js';
 import { makeModalCard } from "./markupModalCard.js";
 
@@ -39,7 +38,7 @@ function findGenre(obj) {
     return "";
   }
 return currentGenre.name;
-};
+}
 
 function onOpenModal(id) {
   event.preventDefault();
