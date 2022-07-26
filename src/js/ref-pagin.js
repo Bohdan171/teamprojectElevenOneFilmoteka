@@ -7,5 +7,7 @@ export const ref = {
   selectedPage: document.querySelector(".pagination-list_item--selected"),
   leftUse: document.querySelector(".leftUse"),
   leftSvg: document.querySelector(".iconLeftArray"),
+  rightUse: document.querySelector(".iconRightArray"),
+  rightSvg: document.querySelector(".iconRightUse"),
   
 };
