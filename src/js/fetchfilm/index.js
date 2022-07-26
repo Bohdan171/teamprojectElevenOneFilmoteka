@@ -28,7 +28,7 @@ async function onSubmit(evt) {
       if (data.results.length === 0) {
         Notify.failure('Nothing found according to your request!Please try again.');
       } else {
-        Notify.success(`${totalResults}films found for your request`);
+        Notify.success(`${totalResults} films found for your request`);
       }
       localStorage.setItem("array-films", JSON.stringify(data.results));
       arrayJSON  = localStorage.getItem("array-films");
