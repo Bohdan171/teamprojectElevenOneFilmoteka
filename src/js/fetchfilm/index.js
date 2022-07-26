@@ -32,7 +32,7 @@ async function onSubmit(evt){
 function createMarkup(results){
     const markup = results.map(({title, poster_path, release_date = "2021-01-01", genre_ids}) => {
         const url = `https://image.tmdb.org/t/p/w500`;
-        const date = release_date.slice(0, 4);
+        const date = release_date ? release_date.slice(0, 4) : 'No information';
         const genreItems = JSON.parse(localStorage.getItem("genre")).genres;
           let newName = [];
         for (const genre of genreItems){
@@ -45,7 +45,10 @@ function createMarkup(results){
         
        <div class="film-card">
        <a class="gallery__link" href="${url}${poster_path}">
-       <img class="gallery__image" src="${url}${poster_path}" alt="${title}" loading="lazy" />
+       <img class="gallery__image" src=${
+          poster_path !== null
+            ? `https://image.tmdb.org/t/p/w500${poster_path}`
+            : `https://mysteriouswritings.com/wp-content/uploads/2017/02/movie.jpg`} alt="${title}" loading="lazy" />
        </a>
        <div class="info">
          <h2 class="title">
