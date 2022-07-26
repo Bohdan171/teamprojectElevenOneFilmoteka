@@ -1,5 +1,5 @@
 export  function createMarkup(results) {
-  const markup = results.map(({id, title="", name="", poster_path, release_date = "2021-01-01", genre_ids }) => {
+  const markup = results.map(({id, title="", name="", poster_path, release_date = "2021-01-01", genre_ids =[] }) => {
         const url = `https://image.tmdb.org/t/p/w500`
         const date = release_date.slice(0, 4)
         const genreItems = JSON.parse(localStorage.getItem("genre")).genres
@@ -8,7 +8,7 @@ export  function createMarkup(results) {
           for (const el of genre_ids){
           if (genre.id === el){
             newName.push(genre.name)} }          
-        }console.log(genre_ids);
+        };
     genre_ids = newName.slice(0, 2);
     if (genre_ids.length === 0) {
        genre_ids="Other";
