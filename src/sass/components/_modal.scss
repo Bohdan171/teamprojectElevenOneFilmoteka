@@ -157,11 +157,12 @@ body.dark {
   line-height: 1.15;
   margin-bottom: 20px;
   color: #000;
+  
 }
 
 @media screen and (min-width: 1200px) {
   .modal-main-title {
-    height: 31px;
+    //height: 31px;
     font-size: 30px;
     line-height: 1.16;
   }
