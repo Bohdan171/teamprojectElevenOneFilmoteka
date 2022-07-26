@@ -4,6 +4,9 @@ import { madeMarkupMorePages, madeMarkupLastPages, madeMarkupFirstPages } from "
 import  PopulаrFilms  from './popular/fetchPopular.js';
 import { fetchGenre } from './fetchfilm/genre.js'
 import { createMarkup } from "./markupCard";
+import { is_search } from './fetchfilm/index';
+import { query_line } from './fetchfilm/index';
+import NewFilms from "./fetchfilm/fetch";
 
 let page = 1;
 let pagesArray =[];
@@ -18,8 +21,16 @@ const populаrFilms = new PopulаrFilms();
 // console.log(populаrFilms)
 
 async function madeMarkupPopular() {
+  console.log(is_search);
   await fetchGenre();
-    populаrFilms.fetch(page)
+    let use_class = populаrFilms
+  console.log('PopularFilms used')
+  if (is_search) {
+    use_class = new NewFilms()
+    use_class.name = query_line
+  console.log('NewFilms used')
+  }
+  use_class.fetch(page)
     .then(data => {
       totalPages = data.total_pages;
       localStorage.setItem("array-films", JSON.stringify(data.results));
