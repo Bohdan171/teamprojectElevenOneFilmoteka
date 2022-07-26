@@ -71,11 +71,11 @@ async function onPageBtnClick(e) {
   if (targetElem === "btn-page") {
     page = Number(e.target.textContent);
   };
-  if (targetElem === "right-btn") {
+  if (targetElem === "right-btn" ) {
 
          page = Number(page)+1;
   };
-  if (targetElem === "left-btn") {
+  if (targetElem === "left-btn"|| ref.leftUse|| ref.leftSvg ) {
     
          page = Number(page)-1;
   };
