@@ -1,5 +1,6 @@
 import NewFilms from './fetch.js';
 import { fetchGenre } from './genre.js';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const form = document.querySelector('.search-form');
 const input = document.querySelector('.search-field');
@@ -23,6 +24,14 @@ async function onSubmit(evt) {
   newFilms
     .fetch(1)
     .then(data => {
+      let totalResults = data.total_results;
+      if (data.results.length === 0) {
+        Notify.failure('Nothing found according to your request!Please try again.');
+      } else {
+        Notify.success(`${totalResults}films found for your request`);
+      }
+      localStorage.setItem("array-films", JSON.stringify(data.results));
+      arrayJSON  = localStorage.getItem("array-films");
       return data.results;
     })
     .then(results => {
@@ -32,7 +41,7 @@ async function onSubmit(evt) {
 
 function createMarkup(results) {
   const markup = results
-    .map(({ title, poster_path, release_date = '2021-01-01', genre_ids }) => {
+    .map(({ title, poster_path, release_date = '2021-01-01', genre_ids =[] }) => {
       const url = `https://image.tmdb.org/t/p/w500`;
       const date = release_date ? release_date.slice(0, 4) : 'No information';
       const genreItems = JSON.parse(localStorage.getItem('genre')).genres;
