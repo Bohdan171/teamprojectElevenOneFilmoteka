@@ -1,7 +1,6 @@
 import NewFilms from './fetch.js';
 import { fetchGenre } from './genre.js';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import {arrayJSON} from "../pagination-fetch.js"
 const form = document.querySelector('.search-form');
 const input = document.querySelector('.search-field');
 const gallery = document.querySelector('.gallary');
@@ -24,14 +23,6 @@ async function onSubmit(evt) {
   newFilms
     .fetch(1)
     .then(data => {
-      let totalResults = data.total_results;
-      if (data.results.length === 0) {
-        Notify.failure('Nothing found according to your request!Please try again.');
-      } else {
-        Notify.success(`${totalResults} films found for your request`);
-      }
-      localStorage.setItem("array-films", JSON.stringify(data.results));
-      arrayJSON  = localStorage.getItem("array-films");
       return data.results;
     })
     .then(results => {
