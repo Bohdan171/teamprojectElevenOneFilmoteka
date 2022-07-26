@@ -6,7 +6,8 @@ const input = document.querySelector('.search-field');
 const gallery = document.querySelector(".gallary");
 console.log(gallery);
 console.log(input);
-
+export let is_search = false;
+export let query_line = "";
 const newFilms = new NewFilms();
 
 console.log(newFilms);
@@ -16,9 +17,10 @@ form.addEventListener("submit", onSubmit);
 async function onSubmit(evt){
     evt.preventDefault();
     fetchGenre();
-             
-    newFilms.name = input.value.trim();
-    newFilms.fetch()
+    is_search = true;  
+  query_line = input.value.trim();
+  newFilms.name = query_line;
+    newFilms.fetch(1)
   .then(data => {
     return data.results;
   })
