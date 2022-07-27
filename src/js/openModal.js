@@ -10,11 +10,6 @@ const modal = document.querySelector('.js-modal');
 const trailerBackdrop = document.querySelector('.js-backdrop-trailer');
 const trailerIframe = document.querySelector('.js-trailer');
 const cardContainer = document.querySelector('.card-container');
-const btnwatched = document.querySelector('.modal-btn-watched')
-console.log(btnwatched)
-const btnqueue = document.querySelector('.modal-btn-queue')
-
-
 
 
 galleryList.addEventListener('click', onCardClick);
@@ -57,8 +52,7 @@ function onOpenModal(id) {
   dataFilms = JSON.parse(arrayJSON);
   film = dataFilms.find(film => film.id === needId);
   let genre_ids = findGenre(film);
-  modal.insertAdjacentHTML("beforeend", "<div> </div>")
-  modal.insertAdjacentHTML("afterbegin", makeModalCard(film,genre_ids));
+  modal.innerHTML = makeModalCard(film,genre_ids);
   
   
 //   populаrFilms.fetch(1)
@@ -123,33 +117,7 @@ function onOpenModal(id) {
 //     document.querySelector('.modal-img-play')
 //       .addEventListener('click', watchTrailer);
 //   });
-
-
 }
-   
-btnwatched.addEventListener('click', onWatchedClick)
-
-let filmList = []
-
-function onWatchedClick(evt){
-  evt.preventDefault()
-  const filmObj = film
-  filmList.push(filmObj) 
-  console.log(filmList)
-  localStorage.setItem('watched', JSON.stringify(filmList)) 
-  }
-
-  btnqueue.addEventListener('click', onQueueClick)
-
-let filmQueueList = []
-
-function onQueueClick(evt){
-  evt.preventDefault()
-  const filmQueueObj = film
-  filmQueueList.push(filmQueueObj) 
-  console.log(filmQueueList)
-  localStorage.setItem('queue', JSON.stringify(filmQueueList)) 
-  }
 
 let list = new Array();
 class localStorageAPI {

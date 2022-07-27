@@ -4,5 +4,10 @@ export const ref = {
   list: document.querySelector("[data-action ='pagin-list']"),
   leftBtn: document.querySelector("[data-action='left-btn']"),
   rightBtn: document.querySelector("[data-action='right-btn']"),
-  selectedPage: document.querySelector(".pagination-list_item--selected")
+  selectedPage: document.querySelector(".pagination-list_item--selected"),
+  leftUse: document.querySelector(".leftUse"),
+  leftSvg: document.querySelector(".iconLeftArray"),
+  rightUse: document.querySelector(".iconRightArray"),
+  rightSvg: document.querySelector(".iconRightUse"),
+  
 };
