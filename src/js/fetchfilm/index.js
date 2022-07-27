@@ -1,6 +1,6 @@
 import NewFilms from './fetch.js';
 import { fetchGenre } from './genre.js';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const form = document.querySelector('.search-form');
 const input = document.querySelector('.search-field');
 const gallery = document.querySelector('.gallary');
