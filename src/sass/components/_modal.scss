@@ -43,6 +43,7 @@
   }
 }
 
+
 .modal {
   position: absolute;
   min-width: 280px;
@@ -70,15 +71,7 @@
     padding: 50px 30px 40px 30px;
   }
 }
-body.dark {
-  .modal {
-    background-color: rgb(58, 69, 69);
-  }
-  .modal-main-title, .modal-list__info--item,.modal-film-description, .modal-secondary-title
-  {
-    color:#fff;
-  }
-}
+
 
 .js-backdrop-trailer {
   display: flex;
@@ -138,14 +131,14 @@ body.dark {
 
 @media screen and (min-width: 768px) {
   .wrapper-img {
-    //width: 264px;
+    width: 264px;
     height: 374px; 
   }
 }
 
 @media screen and (min-width: 1024px) {
   .wrapper-img {
-    //width: 396px;
+    width: 396px;
     height: 476px;
     overflow: hidden;
   }
@@ -157,12 +150,11 @@ body.dark {
   line-height: 1.15;
   margin-bottom: 20px;
   color: #000;
-  
 }
 
 @media screen and (min-width: 1200px) {
   .modal-main-title {
-    //height: 31px;
+    height: 31px;
     font-size: 30px;
     line-height: 1.16;
   }
@@ -216,38 +208,17 @@ body.dark {
   display: flex;
   color: #000;
 }
-
 .modal-list__info--item:nth-child(1) h3 {
-  margin-right: 85px;
-}
-@media screen and (max-width: 768px) {
-  .modal-list__info--item:nth-child(1) h3 {
-    margin-right: 41px;
-  }
+  margin-right: 41px;
 }
 .modal-list__info--item:nth-child(2) h3 {
-  margin-right: 97px;
-}
-@media screen and (max-width: 768px) {
-  .modal-list__info--item:nth-child(2) h3 {
-    margin-right: 53px;
-  }
+  margin-right: 53px;
 }
 .modal-list__info--item:nth-child(3) h3 {
-  margin-right: 83px;
-}
-@media screen and (max-width: 768px) {
-  .modal-list__info--item:nth-child(3) h3 {
-    margin-right: 39px;
-  }
+  margin-right: 39px;
 }
 .modal-list__info--item:nth-child(4) h3 {
-  margin-right: 120px;
-}
-@media screen and (max-width: 768px) {
-  .modal-list__info--item:nth-child(4) h3 {
-    margin-right: 76px;
-  }
+  margin-right: 76px;
 }
 .modal-list__info--item:not(:last-child) {
   margin-bottom: 10px;
@@ -259,7 +230,6 @@ body.dark {
   font-size: 12px;
   line-height: 16px;
   color: #8C8C8C;
-  white-space: nowrap;
 }
 .modal-list__content--item {
   display: flex;

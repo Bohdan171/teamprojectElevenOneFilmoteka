@@ -1,15 +1,14 @@
 .modal-wrapper-btn {
   margin-top: 20px;
-  margin-left: 24px;
+  margin-left: 26px;
   display: flex;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 767px) {
   .modal-wrapper-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 0;
   }
 }
 
@@ -20,7 +19,7 @@
   line-height: 1.33;
   text-align: center;
   color: #fff;
-  width: 136px;
+  width: 120px;
   height: 44px;
   border-radius: 5px;
   padding-top: 5px;
@@ -41,7 +40,7 @@
 
 @media screen and (min-width: 1024px) {
   .modal-btn {
-    width: 110px;
+    width: 136px;
     font-size: 12px;
   }
 }

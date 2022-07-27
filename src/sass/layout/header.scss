@@ -78,7 +78,7 @@ html {
 .header-bg {
   margin-left: auto;
   margin-right: auto;
-  // max-width: $mobile;
+  max-width: $mobile;
   min-height: 216px;
   background-image: url(/src/images/header-bg-main-mobile.jpg);
   background-position: 50%;
@@ -92,7 +92,7 @@ html {
   }
 
   @media screen and (min-width: $tablet) {
-    // max-width: $tablet;
+    max-width: $tablet;
     background-image: url(/src/images/header-bg-main-tablet.jpg);
 
     @media screen and (max-width: ($desktop - 1)) and (min-device-pixel-ratio: 2),
@@ -103,7 +103,7 @@ html {
   }
 
   @media screen and (min-width: $desktop) {
-    // max-width: $desktop;
+    max-width: $desktop;
     background-image: url(/src/images/header-bg-main-desktop.jpg);
 
     @media screen and (min-device-pixel-ratio: 2),

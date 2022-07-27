@@ -11,7 +11,7 @@ import NewFilms from "./fetchfilm/fetch";
 let page = 1;
 let pagesArray =[];
 let totalPages;
-export let arrayJSON;
+let arrayJSON;
 
 ref.pagBox.addEventListener("click", onPageBtnClick);
 
