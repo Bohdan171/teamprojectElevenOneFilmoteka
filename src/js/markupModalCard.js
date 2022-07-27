@@ -1,7 +1,11 @@
 // const modal = document.querySelector('.js-modal');
 export function makeModalCard({ id, title="", name="",poster_path,overview,vote_average,vote_count,popularity},data) {
     let genre_ids = data;
-    return `<button type="button" class="modal-close-btn js-close-btn" width="14" height="14">×</button>
+    return `<button type="button" class="modal-close-btn js-close-btn">
+      <svg class="modal-close-btn__icon" width="14" height="14">
+        <use href='/src/images/sprite.svg#icon-close'></use>
+      </svg>
+    </button>
     <div class="card-container">
       <div class='modal-wrapper js-modal-wrapper' data-id='${id}'>
         <div class='wrapper-img'>
@@ -11,6 +15,7 @@ export function makeModalCard({ id, title="", name="",poster_path,overview,vote_
             alt='moviе poster: ${title}${name}'
           />
           <div class='overlay'>
+            <img class='modal-img-play' src="/images/play-orange.png" alt='icon-play'/>
           </div>
         </div>
         <div class='modal-right-part'>
@@ -25,21 +30,21 @@ export function makeModalCard({ id, title="", name="",poster_path,overview,vote_
           </ul>
 
           </div>
-          <b class='modal-secondary-title'>About</b>
+          <h3 class='modal-secondary-title'>About</h3>
           <p class='modal-film-description'>${overview}</p>
           <div class='modal-wrapper-btn'>
-            <button class='modal-btn modal-btn-watched js-modal-btn-watched' type='button'>add to watched</button>
-            <button
-              class='visually-hidden modal-btn modal-btn-remove modal-btn-remove-watched js-modal-btn-remove-watched'
-              type='button'
-            >remove from watched</button>
-            <button class='modal-btn modal-btn-queue js-modal-btn-queue' type='button'>add to queue</button>
-            <button
-              class='visually-hidden modal-btn modal-btn-remove modal-btn-remove-queue js-modal-btn-remove-queue'
-              type='button'
-            >remove from queue</button>
-          </div>
+          <button class='modal-btn modal-btn-watched js-modal-btn-watched' type='button'>add to watched</button>
+          <button
+            class='visually-hidden modal-btn modal-btn-remove modal-btn-remove-watched js-modal-btn-remove-watched'
+            type='button'
+          >remove from watched</button>
+          <button class='modal-btn modal-btn-queue js-modal-btn-queue' type='button'>add to queue</button>
+          <button
+            class='visually-hidden modal-btn modal-btn-remove modal-btn-remove-queue js-modal-btn-remove-queue'
+            type='button'
+          >remove from queue</button>
         </div>
+                  </div>
       </div>
     </div>
  `;
